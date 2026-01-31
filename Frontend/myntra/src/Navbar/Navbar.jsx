@@ -2,8 +2,10 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Mandrop from './Dropdown/Mandrop'
 const Navbar = () => {
+  const navigate=useNavigate();
   const [menhover, setmenhover] = useState(false);
   return (
     <div className='navbar'>
@@ -35,15 +37,15 @@ const Navbar = () => {
         <img src="/search-interface-symbol (1).png" alt="Error" />
         <input type="text" placeholder='search for products' />
       </div>
-      <div className="profile">
+      <div className="profile" onClick={()=>{navigate('/profile')}}>
         <NavLink to='/profile' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/profile.png" alt="" /></NavLink>
         <NavLink to='/profile' className={(e) => { return e.isActive ? "red" : "green" }}>Profile</NavLink>
       </div>
-      <div className="wishlist">
+      <div className="wishlist" onClick={()=>{navigate('/wish')}}>
         <NavLink to='/wish' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/wishlist.png" alt="" /></NavLink>
         <NavLink to='/wish' className={(e) => { return e.isActive ? "red" : "green" }}>WishList</NavLink>
       </div>
-      <div className="sign">
+      <div className="sign" onClick={()=>{navigate('/signin')}}>
         <NavLink to='/signin' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/user (2).png" alt="" /></NavLink>
         <NavLink to='/signin' className={(e) => { return e.isActive ? "red" : "green" }}>Sign in</NavLink>
       </div>
