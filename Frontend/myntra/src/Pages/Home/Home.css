@@ -103,3 +103,19 @@
    /* Myntra pink */
    font-weight: 700;
  }
+ @media (max-width: 768px) {
+  .fixed-position {
+    top: auto;
+    bottom: 20px;
+    right: 10px;
+    writing-mode: horizontal-tb;
+    border-radius: 6px;
+  }
+}
+
+/* ===== EXTRA SMALL DEVICES ===== */
+@media (max-width: 480px) {
+  .badge {
+    padding: 1rem;
+  }
+}
