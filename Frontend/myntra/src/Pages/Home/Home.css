@@ -1,0 +1,99 @@
+ .home {
+   margin-top: 80px;
+   width: 100%;
+
+   min-height: 1000vh;
+   background-color: #f8f8f8;
+ }
+
+ .crousel {
+   display: flex;
+   width: 100%;
+
+   height: fit-content;
+ }
+
+ .track {
+   width: 100%;
+   display: flex;
+
+
+ }
+
+ .fixed-position {
+   position: fixed;
+   top: 40%;
+   right: 0;
+   z-index: 1000;
+
+   background: #ff3f6c;
+   color: white;
+   padding: 14px 10px;
+   border-radius: 0px 8px 8px 0px;
+
+   writing-mode: vertical-lr;
+   /* vertical text */
+   transform: rotate(-180deg);
+   text-orientation: mixed;
+   letter-spacing: 2px;
+
+   cursor: pointer;
+ }
+
+ .track img {
+   width: 100%;
+   height: 700px;
+   object-fit: cover;
+   cursor: pointer;
+ }
+
+ .h2 {
+   display: flex;
+   margin: 20px;
+   gap: 20px;
+
+   color: #948979;
+
+ }
+
+ .badge {
+   width: 100%;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+   gap: 20px;
+   padding: 30px 10px;
+   margin-top: 20px;
+ }
+
+ .badge-details {
+   background-color: #ffffff;
+   border-radius: 12px;
+   padding: 12px;
+   text-align: center;
+   cursor: pointer;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .badge-details:hover {
+   transform: translateY(-6px);
+   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+ }
+
+ .badge-details img {
+   width: 100%;
+   height: 180px;
+   object-fit: contain;
+   margin-bottom: 10px;
+ }
+
+ .badge-details h3 {
+   font-size: 14px;
+   font-weight: 600;
+   margin: 4px 0;
+ }
+
+ .badge-details h3:last-child {
+   color: #ff3f6c;
+   /* Myntra pink */
+   font-weight: 700;
+ }

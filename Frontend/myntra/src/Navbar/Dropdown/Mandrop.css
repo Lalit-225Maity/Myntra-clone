@@ -1,0 +1,34 @@
+ 
+.drop {
+  display: flex;
+  gap: 56px;
+  width: 70%;
+  flex-wrap: wrap;
+}
+.drop > div {
+  min-width: 200px;
+}
+.drop h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #282c3f;
+  margin-bottom: 12px;
+} 
+.drop p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #696b79;
+  margin-bottom: 6px;
+  cursor: pointer;
+  line-height: 22px;
+}
+.drop p:hover {
+  color: #ff3f6c;
+  font-weight: 500;
+}
+.top-wear,
+.fetival,
+.bottomwear {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,55 @@
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import './Navbar.css'
+import { useState } from 'react'
+import Mandrop from './Dropdown/Mandrop'
+const Navbar = () => {
+  const [menhover, setmenhover] = useState(false);
+  return (
+    <div className='navbar'>
+      <NavLink to='/'> <img src="/myntra-2.svg" alt="" className='myntra-img' /></NavLink>
+      <div className="nav-pages">
+        <NavLink to='/' className={(e) => { return e.isActive ? "red" : "green" }} >Home</NavLink>
+        <div className="men-wrapper" onMouseEnter={(e) => {
+            setmenhover(true);
+          }} onMouseLeave={() => { setmenhover(false) }}>
+          <NavLink to='/men' className={(e) => { return e.isActive ? "red" : "green" }} >Men</NavLink>
+            {menhover && (
+            <div className='men-cloths'>
+               <Mandrop/>
+            </div>
+          )}
+        </div>
+         
+
+
+        <div className="women-wrapper">
+          <NavLink to='/women' className={(e) => { return e.isActive ? "red" : "green" }} >Women</NavLink>
+        </div>
+        <div className="kids-wrapper">
+          <NavLink to='/kids' className={(e) => { return e.isActive ? "red" : "green" }}>Kids</NavLink>
+        </div>
+      </div>
+       
+      <div className="search-bar">
+        <img src="/search-interface-symbol (1).png" alt="Error" />
+        <input type="text" placeholder='search for products' />
+      </div>
+      <div className="profile">
+        <NavLink to='/profile' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/profile.png" alt="" /></NavLink>
+        <NavLink to='/profile' className={(e) => { return e.isActive ? "red" : "green" }}>Profile</NavLink>
+      </div>
+      <div className="wishlist">
+        <NavLink to='/wish' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/wishlist.png" alt="" /></NavLink>
+        <NavLink to='/wish' className={(e) => { return e.isActive ? "red" : "green" }}>WishList</NavLink>
+      </div>
+      <div className="sign">
+        <NavLink to='/signin' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/user (2).png" alt="" /></NavLink>
+        <NavLink to='/signin' className={(e) => { return e.isActive ? "red" : "green" }}>Sign in</NavLink>
+      </div>
+    </div>
+
+  )
+}
+
+export default Navbar
