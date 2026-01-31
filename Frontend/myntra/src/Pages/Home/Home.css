@@ -38,7 +38,7 @@
    border-radius: 0px 8px 8px 0px;
 
    writing-mode: vertical-lr;
-   /* vertical text */
+   
    transform: rotate(-180deg);
    text-orientation: mixed;
    letter-spacing: 2px;
@@ -100,7 +100,7 @@
 
  .badge-details h3:last-child {
    color: #ff3f6c;
-   /* Myntra pink */
+ 
    font-weight: 700;
  }
  @media (max-width: 768px) {
@@ -113,7 +113,7 @@
   }
 }
 
-/* ===== EXTRA SMALL DEVICES ===== */
+ 
 @media (max-width: 480px) {
   .badge {
     padding: 1rem;
