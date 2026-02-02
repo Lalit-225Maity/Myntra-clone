@@ -8,6 +8,7 @@ import Kids from './Pages/Kids/Kids'
 import Profile from './Pages/Profile/Profile'
 import Wish from './Pages/Wishlist/Wish'
 import Signin from './Pages/Admin/Signin'
+import ProductItem from './Pages/Products/ProductItem'
 const App = () => {
   return (
     <div>
@@ -20,7 +21,8 @@ const App = () => {
         <Route path='/profile' element={<Profile />} />
         <Route path='/wish' element={<Wish />} />
         <Route path='/signin' element={<Signin />} />
-         
+        <Route path='/items' element={<ProductItem />} />
+
       </Routes>
     </div>
   )
