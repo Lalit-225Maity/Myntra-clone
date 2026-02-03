@@ -22,17 +22,21 @@ const ProductItem = () => {
                     <h3>Filters</h3>
                     <div className="catagories">
                         <h4>Catagories</h4>
-                        <div className="tshirts" onClick={() => { Check(); }}>
-                            <p>T-Shirts</p>
+                        <div className="tshirts" >
+                            <div className="drop-down" onClick={() => { Check(); }}>
+                                <img src="/arrow-down.png" alt="Error"  style={{transform:shirt?"rotate(90deg)":"none"}}/>
+                                <p>T-Shirts</p>
+                            </div>
                             {shirt && (
-                                <>
+                                <div className='drop-shirts'>
                                     <p>Kids' T-shirts</p>
                                     <p>Couple T-shirts</p>
                                     <p>Women's T-shirts</p>
                                     <p>Men's T-shirts</p>
-                                </>
+                                </div>
                             )}
                         </div>
+
                     </div>
                 </div>
             </div>
