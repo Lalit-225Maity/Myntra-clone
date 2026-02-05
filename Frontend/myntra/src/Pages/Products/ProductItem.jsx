@@ -1,11 +1,13 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import './ProductItems.css'
+import checkbox from './Checkbox/Checkbox';
 import { useState } from 'react';
 const ProductItem = () => {
     const { state } = useLocation();
-    const { item } = state || {};
+    const { item} = state || {};
     const [shirt, setshirt] = useState(false);
+    const [brand, setbrand] = useState(false);
     const Check = () => {
         if (shirt === false) {
             setshirt(true);
@@ -14,9 +16,16 @@ const ProductItem = () => {
             setshirt(false);
         }
     }
+    const Brands = () => {
+        if (brand === false) {
+            setbrand(true);
+        }
+        else {
+            setbrand(false)
+        }
+    }
     return (
         <div className='items'>
-
             <div className="sidebar">
                 <div className="filter">
                     <h3>Filters</h3>
@@ -24,7 +33,7 @@ const ProductItem = () => {
                         <h4>Catagories</h4>
                         <div className="tshirts" >
                             <div className="drop-down" onClick={() => { Check(); }}>
-                                <img src="/arrow-down.png" alt="Error"  style={{transform:shirt?"rotate(90deg)":"none"}}/>
+                                <img src="/arrow-down.png" alt="Error" style={{ transform: shirt ? "rotate(90deg)" : "none" }} />
                                 <p>T-Shirts</p>
                             </div>
                             {shirt && (
@@ -36,6 +45,22 @@ const ProductItem = () => {
                                 </div>
                             )}
                         </div>
+                        <div className="brand-name"  >
+                            <div className="brand-dropdown" onClick={() => { Brands(); }}>
+                                <img src="/arrow-down.png" alt="" style={{ transform: brand ? "rotate(90deg)" : "none" }} />
+                                <p>Brands</p>
+                            </div>
+                            {brand && (
+                                <div className='brand-select'>
+                                    {checkbox.map((i) => (
+                                        <div className='brand-label'>
+                                            <input type="checkbox" name={i.name} id={i.id} />
+                                            <label htmlFor={i.label}>{i.label}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
 
                     </div>
                 </div>
@@ -44,12 +69,15 @@ const ProductItem = () => {
                 {item.map((i) => (
                     <div className='search-items'>
                         <div className="items-image">
-                            <img src={i.image} alt="" />
-                            <h3>{i.Brand}</h3>
+                            <img src={i.url_image} alt="" />
+                            <p>{i.title}</p>
+                            <p>Rating:{i.rating}</p>
                             <div className="items-Price">
-                                <p>₹{i.Price}</p>
-                                <p style={{ textDecoration: "line-through" }}>₹{i.Actualprice}</p>
-                                <p>{i.Offer}</p>
+                                <p>₹{i.price}</p>
+                                <p style={{ textDecoration: "line-through" }}>₹{i.price_strikethrough}</p>
+                            </div>
+                            <div className="shiiping-info">
+                                <p>{i.shipping_information}</p>
                             </div>
 
                         </div>
