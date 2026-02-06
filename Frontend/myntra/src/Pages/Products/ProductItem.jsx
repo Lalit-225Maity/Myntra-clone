@@ -2,12 +2,16 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import './ProductItems.css'
 import checkbox from './Checkbox/Checkbox';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 const ProductItem = () => {
     const { state } = useLocation();
-    const { item} = state || {};
+    const { cloth } = state || {};
     const [shirt, setshirt] = useState(false);
     const [brand, setbrand] = useState(false);
+    const [item, setitem] = useState([])
+    const [loading, setloading] = useState(true)
+
     const Check = () => {
         if (shirt === false) {
             setshirt(true);
@@ -24,9 +28,30 @@ const ProductItem = () => {
             setbrand(false)
         }
     }
+    useEffect(() => {
+        const FetchProduct = async () => {
+            try {
+                const response = await axios.get(`/api/search?q=${cloth}`);
+                console.log(response.data.user);
+
+                setitem(response.data.user);
+            } catch (error) {
+
+            }
+            finally {
+                setloading(false);
+            }
+        }
+        FetchProduct();
+    }, [cloth])
+
+
+
     return (
+
         <div className='items'>
-            <div className="sidebar">
+            {loading && <h2 className='load'>Loading........</h2>}
+            {!loading && (<div className="sidebar">
                 <div className="filter">
                     <h3>Filters</h3>
                     <div className="catagories">
@@ -64,8 +89,8 @@ const ProductItem = () => {
 
                     </div>
                 </div>
-            </div>
-            <div className="items-details">
+            </div>)}
+            {!loading && (<div className="items-details">
                 {item.map((i) => (
                     <div className='search-items'>
                         <div className="items-image">
@@ -79,11 +104,14 @@ const ProductItem = () => {
                             <div className="shiiping-info">
                                 <p>{i.shipping_information}</p>
                             </div>
-
+                            <div className="cart-buy">
+                                <button className='cart1'>Buy now</button>
+                                <button className='cart2'>Add to Cart</button>
+                            </div>
                         </div>
                     </div>
                 ))}
-            </div>
+            </div>)}
         </div>
 
     )

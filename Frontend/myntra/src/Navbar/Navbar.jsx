@@ -4,35 +4,11 @@ import './Navbar.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Mandrop from './Dropdown/Mandrop'
-import API from '../API/MynProduct'
 const Navbar = () => {
   const [cloth, setcloth] = useState('');
   const Fetch = (e) => {
     if (e.key === 'Enter') {
-      const Fetchdata = async () => {
-        try {
-          const response = await API.get('/api/v1/amazon/search', {
-            params: {
-              "query": `${cloth}`,
-              "light_request": "true",
-              "country": "in",
-              "domain": "in",
-              "language": "en_IN",
-              "currency": "INR",
-              "start_page": "1",
-              "sort_by": "price_high_to_low",
-              "pages": "3"
-            }
-          })
-          console.log(response.data.products);
-          navigate('/items', { state: { item: response.data.products } })
-        } catch (error) {
-          console.log(error.message);
-
-        }
-
-      }
-      Fetchdata();
+      navigate('/items', { state: {cloth:cloth } })
 
     }
   }
