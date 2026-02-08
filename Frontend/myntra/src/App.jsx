@@ -9,7 +9,12 @@ import Profile from './Pages/Profile/Profile'
 import Wish from './Pages/Wishlist/Wish'
 import Signin from './Pages/Admin/Signin'
 import ProductItem from './Pages/Products/ProductItem'
+import Login from './Pages/Admin/Login/Login'
+import Shop from './services/Shop'
+import Update from './Pages/Admin/Update/Update'
+ 
 const App = () => {
+  
   return (
     <div>
       <Navbar />
@@ -22,6 +27,9 @@ const App = () => {
         <Route path='/wish' element={<Wish />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/items' element={<ProductItem />} />
+        <Route path='/login' element={<Login  />} />
+        <Route path='/service'  element={<Shop/>} />
+        <Route path='/update' element={<Update/>}/>
 
       </Routes>
     </div>

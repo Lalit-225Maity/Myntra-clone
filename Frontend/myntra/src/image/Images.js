@@ -1,15 +1,15 @@
 const Images=[
     {
-        img:'https://www.dealsshutter.com/uploads/social_images/stores/myntra-social-12-oct-1539335161.png'
+        img:'https://www.hindustantimes.com/ht-img/img/2024/09/19/1600x900/aso_banner_1920x1080_1726736708372_1726736724510.png'
     },
     {
-        img:'https://www.theshoppingfriendly.com/wp-content/uploads/2024/02/myntra-coupon-code-above-1000-The-Shopping-Friendly.webp'
+        img:'https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2023-09/Virushka%201200x900.jpg'
     },
     {
-        img:'https://blog.myntra.com//wp-content/uploads/2016/09/Myntra_TryAndBuy2.jpg'
+        img:'https://www.couponorg.co.in/uploads/blogs/6867c1c2cbb71.png'
     },
     {
-        img:'https://cdn.grabon.in/gograbon/indulge/wp-content/uploads/2023/12/Myntra-Fashion-Bazaar-Sale.jpg'
+        img:'https://english.cdn.zeenews.com/sites/default/files/2024/09/25/1522342-eid-blog-banner.png'
     }
 ]
 export default Images

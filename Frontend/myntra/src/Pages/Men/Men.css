@@ -1,77 +1,107 @@
-/* MAIN WRAPPER */
 .men {
-  display: flex;
-  background-color: #f1f3f6; /* Flipkart bg */
-  min-height: 100vh;
-  margin-top: 80px;
-  gap: 12px;
-}
-
-/* SIDEBAR */
-.men-sidebar {
-  width: 240px;
-  background: #ffffff;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-  padding: 16px;
-}
-
-/* RIGHT CONTENT */
-.men-items {
-  flex: 1;
-  background: #ffffff;
-  padding: 12px;
-  border-radius: 2px;
-}
-
-/* BANNER */
-.men-items img {
   width: 100%;
-  border-radius: 2px;
-  margin-bottom: 16px;
+  
+  padding: 20px 0;
 }
 
-/* HEADING */
+ 
+.men-items {
+  width: 100%;
+  margin: auto;
+  padding: 12px;
+}
+
+/* Banner */
+.menproduct-image {
+  width: 100%;
+  height: fit-content;
+  
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.menproduct-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Heading */
 .men-items h1 {
-  font-size: 22px;
-  font-weight: 600;
-  margin: 10px 0 18px;
+  margin: 20px 0 15px;
+  
+  font-weight: 900;
   color: #212121;
 }
 
-/* PRODUCT GRID */
+/* FLEX container */
 .badges {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  height:50vh;
+  width: 100%;
+  display: flex;
+  
+  flex-wrap: wrap;
   gap: 16px;
 }
 
-/* PRODUCT CARD */
-.badge-product {
-  background: #FF5B5B;
-  border-radius: 2px;
+/* Product card */
+.badge-product { 
+  background: #C40C0C;
+  border-radius: 6px;
   padding: 12px;
+  text-align: center;
   cursor: pointer;
-  transition: all 0.25s ease;
-  border: 1px solid #f0f0f0;
+  flex: 1 1 200px; /* 4–5 items per row */
+  max-width: 230px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
 
-/* HOVER EFFECT */
 .badge-product:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
 }
 
-/* PRODUCT IMAGE */
+/* Image */
 .badge-product img {
   width: 100%;
- 
-  height: 220px;
+   
+  height: 230px;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
-.badge-product h2{
-  text-align: center;
-  color: #ffffff;
+/* Name */
+.badge-product h2:first-of-type {
+  
+  font-weight: 500;
+  color: #ffff;
+  margin-bottom: 6px;
+}
+
+/* Offer */
+.badge-product h2:last-of-type {
+ 
+  font-weight: 900;
+  color: #ffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menproduct-image {
+    height: 200px;
+  }
+
+  .badge-product {
+    flex: 1 1 45%; /* 2 per row */
+    max-width: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  .badge-product {
+    flex: 1 1 100%; /* 1 per row */
+    max-width: 100%;
+  }
 }

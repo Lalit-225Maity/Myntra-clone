@@ -1,0 +1,21 @@
+.signin {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.signin form {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.signin input {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.signin label {
+  font-weight: 500;
+}

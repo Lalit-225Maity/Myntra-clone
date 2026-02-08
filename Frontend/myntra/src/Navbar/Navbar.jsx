@@ -4,11 +4,30 @@ import './Navbar.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Mandrop from './Dropdown/Mandrop'
+import { useEffect } from 'react'
 const Navbar = () => {
+  const [name, setname] = useState({});
+  useEffect(() => {
+    (async()=>{
+      try {
+         const savedname = localStorage.getItem("name");
+    if (savedname !== "undefined") {
+      
+      setname(JSON.parse(savedname));
+    }
+      } catch (error) {
+        console.log(error.message);
+        
+      }
+    })();
+  }, [])
+
   const [cloth, setcloth] = useState('');
+
+
   const Fetch = (e) => {
     if (e.key === 'Enter') {
-      navigate('/items', { state: {cloth:cloth } })
+      navigate('/items', { state: { cloth: cloth } })
 
     }
   }
@@ -49,9 +68,9 @@ const Navbar = () => {
         <NavLink to='/wish' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/wishlist.png" alt="" /></NavLink>
         <NavLink to='/wish' className={(e) => { return e.isActive ? "red" : "green" }}>WishList</NavLink>
       </div>
-      <div className="sign" onClick={() => { navigate('/signin') }}>
-        <NavLink to='/signin' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/user (2).png" alt="" /></NavLink>
-        <NavLink to='/signin' className={(e) => { return e.isActive ? "red" : "green" }}>Sign in</NavLink>
+      <div className="sign" onClick={() => { navigate('/login') }}>
+        <NavLink to='/login' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/user (2).png" alt="" /></NavLink>
+        <NavLink to='/login' className={(e) => { return e.isActive ? "red" : "green" }}>{name?.Username ? name?.Username : "Sign in"}</NavLink>
       </div>
     </div>
 

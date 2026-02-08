@@ -7,6 +7,8 @@ const connectDB=require('./Databases/db');
 connectDB();
 const items=require('./Router/Items');
 app.use('/api',items);
+const user=require('./Router/Route');
+app.use('/api',user);
 const port=process.env.PORT||4000;
 app.listen(port,()=>{
     console.log(`Server running at ${port}`);

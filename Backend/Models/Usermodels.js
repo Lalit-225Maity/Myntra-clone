@@ -6,17 +6,22 @@ const User = new Schema({
     },
     Email: {
         required: [true, "Email is Required"],
-        type: String
+        type: String,
+
     },
     Password: {
-        required: [true, "Give a String Password"],
-        type: String
+        required: [true, "Give a Strong Password"],
+        type: String,
+        match: [
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+            "Password must be at least 8 characters and include uppercase, lowercase, and a number"
+        ]
     },
     PhoneNumber: {
         type: String,
-        minlength: [10, "Phone number must be exactly 10 digits"]
+        match: [/^[0-9]{10}$/, "Phone Number Must be exactly 10 digits"]
 
     }
 })
-const Usermodel=model("User",User);
-module.exports=Usermodel;
+const Usermodel = model("User", User);
+module.exports = Usermodel;

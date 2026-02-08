@@ -30,7 +30,14 @@ const Home = () => {
         <div className='home'>
             <div className="crousel">
                 <div className="track">
+
                     <img src={Images[index].img} alt="" />
+                </div>
+                <div className="savings">
+                    <img src="/—Pngtree—multiple hearts clipart_5569598.png" alt="" />
+                    <h2>Swipe rights savings</h2>
+                    <img src="/—Pngtree—multiple hearts clipart_5569598.png" alt="" />
+                    
                 </div>
             </div>
             <div className="h2">
