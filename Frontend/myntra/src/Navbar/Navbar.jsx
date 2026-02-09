@@ -6,18 +6,19 @@ import { useNavigate } from 'react-router-dom'
 import Mandrop from './Dropdown/Mandrop'
 import { useEffect } from 'react'
 const Navbar = () => {
+  const [dropstate, setdropstate] = useState(false);
   const [name, setname] = useState({});
   useEffect(() => {
-    (async()=>{
+    (async () => {
       try {
-         const savedname = localStorage.getItem("name");
-    if (savedname !== "undefined") {
-      
-      setname(JSON.parse(savedname));
-    }
+        const savedname = localStorage.getItem("name");
+        if (savedname !== "undefined") {
+
+          setname(JSON.parse(savedname));
+        }
       } catch (error) {
         console.log(error.message);
-        
+
       }
     })();
   }, [])
@@ -31,7 +32,18 @@ const Navbar = () => {
 
     }
   }
+  const Change = () => {
 
+    if (dropstate === false) {
+      setdropstate(true)
+    }
+
+  }
+  const ChangeStop = () => {
+    if (dropstate === true) {
+      setdropstate(false);
+    }
+  }
   const navigate = useNavigate();
   const [menhover, setmenhover] = useState(false);
   return (
@@ -60,9 +72,31 @@ const Navbar = () => {
         <img src="/search-interface-symbol (1).png" alt="Error" />
         <input type="text" placeholder='search for products' value={cloth} onKeyDown={(e) => { Fetch(e) }} onChange={(e) => { setcloth(e.target.value) }} />
       </div>
-      <div className="profile" onClick={() => { navigate('/profile') }}>
-        <NavLink to='/profile' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/profile.png" alt="" /></NavLink>
-        <NavLink to='/profile' className={(e) => { return e.isActive ? "red" : "green" }}>Profile</NavLink>
+      <div className="profile" onClick={(e) => { e.preventDefault(); }} onMouseEnter={(e) => { e.stopPropagation(); Change() }} onMouseLeave={() => { ChangeStop() }}>
+        <NavLink  ><img src="/profile.png" alt="" /></NavLink>
+        <NavLink  >Profile</NavLink>
+        {dropstate && (
+          <div className='dropdown'>
+        <div className='user-details' onClick={()=>{navigate('/profile');setdropstate(false)}}>
+          <p >User Profile</p>
+        </div>
+            <div className='user-order'>
+              <p> Orders</p>
+              <p>Wishlist</p>
+              <p>Gift Cards</p>
+              <p>Contact Us</p>
+              <p>Myntra Insider</p>
+            </div>
+
+            <div className='user-coupons'>
+              <p> Coupons</p>
+              <p>Saved Cards</p>
+              <p> Saved VPA</p>
+              <p>Saved Addresses</p>
+            </div>
+
+          </div>
+        )}
       </div>
       <div className="wishlist" onClick={() => { navigate('/wish') }}>
         <NavLink to='/wish' className={(e) => { return e.isActive ? "red" : "green" }}><img src="/wishlist.png" alt="" /></NavLink>

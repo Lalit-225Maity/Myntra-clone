@@ -3,7 +3,6 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Usermodel = require('../Models/Usermodels');
-const { redirect } = require('react-router-dom');
 router.post('/create', (req, res) => {
     try {
         const { Username, Email, PhoneNumber, Password, rePassword } = req.body;
@@ -28,7 +27,7 @@ router.post('/create', (req, res) => {
                     message: 'User is Created',
                     users: newUser
                 })
-                
+
             })
         })
 
@@ -49,30 +48,74 @@ router.post('/login', async (req, res) => {
             })
         }
         bcrypt.compare(Password, exists.Password, (err, result) => {
-          
-            
+
+
             if (result) {
-                const token = jwt.sign({ Email:exists.Email }, "key");
+                const token = jwt.sign({ Email: exists.Email }, "key");
                 res.cookie("token", token);
                 res.status(200).json({
-                    success:true,
-                    message:"Login is Complete",
-                    user:exists
+                    success: true,
+                    message: "Login is Complete",
+                    user: exists
                 })
             }
+            else {
+                res.status(500).json({
+                    success: false,
+                    message: "Password do not match",
+                })
+            }
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+})
+router.post('/logout', (req, res) => {
+    try {
+        res.clearCookie("token");
+        res.status(200).json({
+            message: "User is Log out"
         })
     } catch (error) {
 
     }
 })
-router.post('/logout',(req,res)=>{
+router.put('/update', async (req, res) => {
     try {
-        res.clearCookie("token");
-        res.status(200).json({
-            message:"User is Log out"
+        const { Email, newPassword } = req.body;
+        const userEmail = await Usermodel.findOne({ Email });
+        if (!userEmail) {
+            return res.status(500).json({
+
+                message: "Wrong Email id"
+            })
+        }
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newPassword, salt, async (err, hash) => {
+                const Pass = { newPassword: hash }
+                const Update = await Usermodel.findOneAndUpdate({ Email }, { Password: Pass.newPassword }, { new: true });
+                if (Update) {
+                    const token = jwt.sign({ Email: Update.Email }, "key");
+                    res.cookie("token", token);
+                }
+
+                res.status(200).json({
+                    success: true,
+                    message: "Hi this is scuccess",
+                    myuser: Update
+                })
+            }
+
+            )
         })
+
+
+
     } catch (error) {
-        
+        res.send(error.message)
     }
 })
 module.exports = router
