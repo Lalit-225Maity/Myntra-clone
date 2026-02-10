@@ -1,38 +1,87 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Buy.css'
 import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 const Buy = () => {
     const { state } = useLocation();
     const { items } = state || {};
+    const [userd, setuserd] = useState();
+    const [per, setper] = useState();
+    useEffect(() => {
+        const discount = (items.price_strikethrough) - (items.price);
+        const percentage = (discount / items.price_strikethrough) * 100;
+        setper(Math.ceil(percentage))
+    }, [items]);
+    const {
+        register,
+        reset,
+        setValue,
+        handleSubmit,
+        formState:{isSubmitting}
+    } = useForm()
+    useEffect(() => {
+        try {
+            const checkdata = localStorage.getItem("DATA");
+            if (checkdata && checkdata !== "undefined") {
+                const uservalues = JSON.parse(checkdata);
+                console.log(uservalues);
+
+                setuserd(uservalues);
+            }
+            else {
+                setuserd("");
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }, [])
+    const Putdata = async(data) => {
+        await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                 localStorage.setItem("DATA", JSON.stringify(data));
+                 resolve("success");
+            }, 1000);
+        })
+    }
     return (
-        <div className='buy' style={{ marginTop: "80px" }}>
+        <div className='buy' >
             <div className="image-section">
                 <img src={items.url_image} alt="" />
+            </div>
+            <div className="product-section">
+
+                <div className="item-details">
+                    <h3>{items.title}</h3>
+                    <p className='rate'>Rating: <img src="/star.png" alt="" />{items.rating}</p>
+                    <div className="price-through">
+                        <p>₹{items.price}</p>
+                        <p style={{ textDecoration: "line-through" }}>{items.price_strikethrough}</p>
+                        <p>%{per} off</p>
+                    </div>
+                </div>
+                <div className="delivary-option">
+                    <div className="delivery-detail">
+                        <h3>Delivery Details</h3>
+                        {userd ? <form>
+                            <input type="text" value={userd.Address} readOnly />
+                            <input type="text" value={userd.pin} readOnly />
+                        </form> : <form onSubmit={handleSubmit(Putdata)}>
+                            <input type="text" {...register("Address")} />
+                            <input type="text" {...register("pin")} />
+                            <input type="submit" value={isSubmitting?"save...":"save"} />
+                        </form>}
+                    </div>
+
+                </div>
+
                 <div className="buy-cart">
                     <button>Buy now</button>
                     <button>Add to Bag</button>
                 </div>
             </div>
-            <div className="product-section">
-                <div className="item-details">
-                    <h3>{items.title}</h3>
-                    <p>Rating:{items.rating}</p>
-                    <div className="price-through">
-                        <p>₹{items.price}</p>
-                        <p style={{ textDecoration: "line-through" }}>{items.price_strikethrough}</p>
-                    </div>
-                </div>
-                <div className="delivary-option">
-                    <span>Available offers
 
-                        Bank OfferFlat ₹50 off on Flipkart Bajaj Finserv Insta EMI Card. Min Booking Amount: ₹2,500T&C
-
-                        Bank Offer10% off upto ?1500 on Canara Bank CC and CC EMI transactions on MOV of ?4999T&C
-
-                        Bank Offer8% Off Up to ?750 on HDFC Bank Credit Card EMI on 6 months tenure. Min. Txn Value: ?7500T&C</span>
-                </div>
-
-            </div>
         </div>
     )
 }

@@ -14,6 +14,7 @@ const Navbar = () => {
       const response = await axios.post('/api/logout');
       console.log(response.data);
       localStorage.removeItem("name");
+      localStorage.removeItem("DATA")
       navigate('/login');
       window.location.reload();
 
