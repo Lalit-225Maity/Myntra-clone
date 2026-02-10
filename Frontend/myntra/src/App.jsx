@@ -13,12 +13,15 @@ import Login from './Pages/Admin/Login/Login'
 import Shop from './services/Shop'
 import Update from './Pages/Admin/Update/Update'
 import { useLocation } from 'react-router-dom'
+import Buy from './Pages/Cart/Buy'
+ 
 
 const App = () => {
+ 
   const location = useLocation();
   return (
     <div>
-      {location.pathname !== '/login' && <Navbar />}
+      {location.pathname !== '/login' && <Navbar  />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/men' element={<Men />} />
@@ -28,9 +31,10 @@ const App = () => {
         <Route path='/wish' element={<Wish />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/items' element={<ProductItem />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login/>} />
         <Route path='/service' element={<Shop />} />
         <Route path='/update' element={<Update />} />
+        <Route path='/buy' element={<Buy/>}/>
 
       </Routes>
     </div>

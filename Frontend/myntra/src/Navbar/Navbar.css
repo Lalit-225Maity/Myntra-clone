@@ -162,6 +162,7 @@
    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
    z-index: 1000;
    border-radius: 4px;
+   
  }
 
 
@@ -296,3 +297,28 @@
      padding: 16px 20px;
    }
  }
+ 
+ 
+.logout {
+  padding-left: 5px;
+  padding-top:12px ;
+  padding-bottom: 12px;
+  cursor: pointer;
+  border-top: 1px solid #f0f0f0;
+ 
+ 
+ 
+  width: 80%;
+}
+
+.logout button {
+  
+  all: unset;       /* removes default button styles */
+  cursor: pointer;
+  color: #333;      /* text color */
+  font-size: 14px;  /* match dropdown text */
+   font-weight: 500;
+}
+
+.logout button:hover {
+  color: #ff3f6c; }

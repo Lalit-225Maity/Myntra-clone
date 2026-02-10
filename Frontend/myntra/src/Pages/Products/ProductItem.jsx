@@ -3,15 +3,19 @@ import { useLocation } from 'react-router-dom'
 import './ProductItems.css'
 import checkbox from './Checkbox/Checkbox';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const ProductItem = () => {
+    const navigate=useNavigate();
     const { state } = useLocation();
     const { cloth } = state || {};
     const [shirt, setshirt] = useState(false);
     const [brand, setbrand] = useState(false);
     const [item, setitem] = useState([])
     const [loading, setloading] = useState(true)
-
+const cart=(items)=>{
+    navigate('/buy',{state:{items:items}})
+}
     const Check = () => {
         if (shirt === false) {
             setshirt(true);
@@ -32,6 +36,8 @@ const ProductItem = () => {
         const FetchProduct = async () => {
             try {
                 const response = await axios.get(`/api/search?q=${cloth}`);
+                 
+                
                 console.log(response.data.user);
 
                 setitem(response.data.user);
@@ -105,7 +111,7 @@ const ProductItem = () => {
                                 <p>{i.shipping_information}</p>
                             </div>
                             <div className="cart-buy">
-                                <button className='cart1'>Buy now</button>
+                                <button className='cart1' onClick={()=>{cart(i);}}>Buy now</button>
                                 <button className='cart2'>Add to Cart</button>
                             </div>
                         </div>

@@ -1,24 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import './Profile.css'
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 const Profile = () => {
-  const navigate = useNavigate();
+ 
   const [userdata, setuserdata] = useState({});
-  const Logout = async () => {
-    try {
-      const response = await axios.post('/api/logout');
-      console.log(response.data);
-      localStorage.removeItem("name");
-      navigate('/');
-      window.location.reload();
-
-
-    } catch (error) {
-
-    }
-  }
   useEffect(() => {
     const savedItems = localStorage.getItem("name");
     if (savedItems && savedItems !== "undefined") {
@@ -72,9 +57,7 @@ const Profile = () => {
             <input type="submit" value={isSubmitting ? "saving...." : "save"} disabled={isSubmitting} />
           </form>
        
-        <div className="logout">
-          <button onClick={() => { Logout() }}>Logout</button>
-        </div>
+       
       </div>
     </div>
   )

@@ -22,10 +22,10 @@ const Login = () => {
             const response = await axios.post('/api/login', data);
             console.log(response.data.user);
 
+
             if (response.data.success) {
                 resolve("success");
                 localStorage.setItem("name", JSON.stringify(response.data.user));
-
                 alert("welcome User")
 
                 navigate('/');

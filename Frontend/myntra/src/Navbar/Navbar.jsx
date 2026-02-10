@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Navbar.css'
+import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Mandrop from './Dropdown/Mandrop'
@@ -8,6 +9,19 @@ import { useEffect } from 'react'
 const Navbar = () => {
   const [dropstate, setdropstate] = useState(false);
   const [name, setname] = useState({});
+  const Logout = async () => {
+    try {
+      const response = await axios.post('/api/logout');
+      console.log(response.data);
+      localStorage.removeItem("name");
+      navigate('/login');
+      window.location.reload();
+
+
+    } catch (error) {
+
+    }
+  }
   useEffect(() => {
     (async () => {
       try {
@@ -77,9 +91,11 @@ const Navbar = () => {
         <NavLink  >Profile</NavLink>
         {dropstate && (
           <div className='dropdown'>
-        <div className='user-details' onClick={()=>{navigate('/profile');setdropstate(false)}}>
-          <p >User Profile</p>
-        </div>
+            {name?<div className='user-details' onClick={() => { navigate('/profile'); setdropstate(false) }}>
+               <p >User Profile</p> 
+            </div>:<div className='user-details' onClick={() => { navigate('/login'); setdropstate(false) }}>
+               <p >signin/signup</p> 
+            </div>}
             <div className='user-order'>
               <p> Orders</p>
               <p>Wishlist</p>
@@ -94,7 +110,9 @@ const Navbar = () => {
               <p> Saved VPA</p>
               <p>Saved Addresses</p>
             </div>
-
+            {name && <div className="logout">
+              <button onClick={() => { Logout() }}>Logout</button>
+            </div>}
           </div>
         )}
       </div>
