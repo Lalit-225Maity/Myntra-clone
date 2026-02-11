@@ -123,6 +123,14 @@
    .badge {
      padding: 1rem;
    }
+   .track {
+    height: 400px;
+  }
+
+  .track img {
+    width: 100%;
+  }
+
  }
  .savings {
   width: 100%;

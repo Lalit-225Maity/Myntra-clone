@@ -14,7 +14,7 @@ const ProductItem = () => {
     const [item, setitem] = useState([])
     const [loading, setloading] = useState(true)
 const cart=(items)=>{
-    navigate('/buy',{state:{items:items}})
+    navigate('/buy',{state:{items}})
 }
     const Check = () => {
         if (shirt === false) {

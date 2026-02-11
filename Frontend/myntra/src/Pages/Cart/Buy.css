@@ -1,220 +1,27 @@
-/*  
-
 .buy {
   display: flex;
-  flex-wrap: wrap;
-
   max-width: 100%;
-  min-height: 100vh;
   margin-top: 80px;
+  min-height: 100vh;
   background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   font-family: 'Roboto', sans-serif;
-  
-  padding-bottom: 80px;
-  
+  padding-bottom: 120px;
 }
 
 .image-section {
   flex: 1;
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
+  border-right: 1px solid #ccc;
 }
 
 .image-section img {
   width: 35%;
+ 
   object-fit: contain;
-  height: auto;
-
-
-
-}
-
-.product-section {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  border-radius: 20px;
-  flex-direction: column;
-
-
- 
-
-}
-
-
-
-.item-details h3 {
-  font-size: 24px;
-  font-weight: 500;
-  color: #212121;
-  margin-bottom: 10px;
-}
-
-.rate {
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  color: #212121;
-  margin-bottom: 15px;
-}
-
-.rate img {
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
-}
-
-.price-through {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.price-through p:first-child {
-  font-size: 28px;
-  font-weight: 600;
-  color: #212121;
-}
-
-.price-through p:nth-child(2) {
-  font-size: 18px;
-  color: #878787;
-  text-decoration: line-through;
-}
-
-.price-through p:last-child {
-  font-size: 16px;
-  color: #388e3c;
- 
-  font-weight: 500;
-}
-
-.delivary-option {
-  margin-bottom: 20px;
-}
-
-.delivary-option h3 {
-  font-size: 18px;
-  font-weight: 500;
-  color: #212121;
-  margin-bottom: 10px;
-}
-
- 
-
-.buy-cart {
-  width: 40%;
-
-  padding: 1;
-  position: fixed;
-  bottom: 0;
-  background-color: #ffff;
-
-  display: flex;
-  justify-content: space-around;
-  border-radius: 15px;
-  padding: 5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
-}
-
-.buy-cart button {
-  flex: 1;
-  max-width: 200px;
    
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.buy-cart button:first-child {
-  background-color: #fb641b;
- 
-  color: #fff;
-}
-
-.buy-cart button:first-child:hover {
-  background-color: #e55a1b;
-}
-
-.buy-cart button:last-child {
-  background-color: #fff;
-  color: #2874f0;
-   
-  border: 1px solid #2874f0;
-}
-
-.buy-cart button:last-child:hover {
-  background-color: #f0f8ff;
-}
-
-
-@media (max-width: 768px) {
-  .buy {
-    flex-direction: column;
-    margin: 80px 10px 0;
-    padding: 15px;
-    padding-bottom: 100px;
-  
-  }
-
-  .image-section {
-    order: 1;
-    flex: 1;
-    
-  }
-
-  .product-section {
-    order: 2;
-  }
-
-  .buy-cart {
-    padding: 15px 20px;
-    
-  }
-
-  .buy-cart button {
-    margin-bottom: 10px;
-  }
-} */
-
-
-.buy {
-  display: flex;
- 
-  max-width: 100%;
-  margin-top: 80px;
-  min-height: 100vh;
-  background-color: #fff;
-  font-family: 'Roboto', sans-serif;
-  padding-bottom: 120px; 
-}
-
-.image-section {
-  flex: 1;
- 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-    border-right: 1px solid #ccc;
-}
-
-.image-section img {
-  width: 70%;
-  object-fit: contain;
 }
 
 .product-section {
@@ -222,10 +29,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-     
 }
-
- 
 
 .item-details h3 {
   font-size: 24px;
@@ -270,41 +74,114 @@
   font-weight: 500;
 }
 
- 
-
 .delivary-option {
   margin-top: 30px;
+}
+
+.delivery-detail h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
 }
 
 .delivery-detail form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-   
   width: 50%;
 }
 
 .delivery-detail input {
-
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
- 
+.delivery-detail input[type="submit"] {
+  background-color: #2874f0;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.delivery-detail input[type="submit"]:hover {
+  background-color: #1e5bb8;
+}
+
+.delivery-time {
+  margin-top: 15px;
+}
+
+.delivery-time p {
+  font-size: 14px;
+  color: #666;
+}
+
+.payment-meythods span {
+  display: flex;
+  align-items: center;
+  padding: 12px 0 12px;
+}
+
+.delivery-detail h4 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.delivery-detail input[type="radio"] {
+  margin-right: 8px;
+}
+
+.delivery-detail label {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.company-assurance {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.company-assurance span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.company-assurance img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.company-assurance p {
+  font-size: 14px;
+  color: #212121;
+  font-weight: 500;
+  margin: 0;
+}
+
 .buy-cart {
   position: fixed;
   bottom: 0;
   right: calc((100vw - 1200px) / 2);
   width: 50%;
   max-width: 520px;
-
   background-color: #fff;
   padding: 12px;
   display: flex;
   gap: 15px;
   justify-content: space-between;
-
   border-radius: 12px 12px 0 0;
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
   z-index: 10;
@@ -320,10 +197,13 @@
   border: none;
 }
 
- 
 .buy-cart button:first-child {
   background-color: #fb641b;
   color: #fff;
+}
+
+.buy-cart button:first-child:hover {
+  background-color: #e55a0f;
 }
 
 .buy-cart button:last-child {
@@ -332,7 +212,10 @@
   border: 1px solid #2874f0;
 }
 
- 
+.buy-cart button:last-child:hover {
+  background-color: #f0f8ff;
+}
+
 @media (max-width: 768px) {
   .buy {
     flex-direction: column;
@@ -348,5 +231,25 @@
     right: 0;
     max-width: 100%;
     border-radius: 0;
+  }
+
+  .delivery-detail form {
+    width: 100%;
+  }
+
+  .company-assurance {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .company-assurance span {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .company-assurance img {
+    width: 30px;
+    height: 30px;
   }
 }

@@ -88,8 +88,8 @@ const Navbar = () => {
         <input type="text" placeholder='search for products' value={cloth} onKeyDown={(e) => { Fetch(e) }} onChange={(e) => { setcloth(e.target.value) }} />
       </div>
       <div className="profile" onClick={(e) => { e.preventDefault(); }} onMouseEnter={(e) => { e.stopPropagation(); Change() }} onMouseLeave={() => { ChangeStop() }}>
-        <NavLink  ><img src="/profile.png" alt="" /></NavLink>
-        <NavLink  >Profile</NavLink>
+        <NavLink onClick={()=>{e.preventDefault();}} ><img src="/profile.png" alt="" /></NavLink>
+        <NavLink  onClick={()=>{e.preventDefault();}}>Profile</NavLink>
         {dropstate && (
           <div className='dropdown'>
             {name?<div className='user-details' onClick={() => { navigate('/profile'); setdropstate(false) }}>
