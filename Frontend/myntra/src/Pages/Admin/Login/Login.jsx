@@ -19,11 +19,8 @@ const Login = () => {
         await new Promise((resolve, reject) => {
             setTimeout(async () => {
                 try {
-
                     const response = await axios.post('/api/login', data);
-                    console.log(response.data.user);
-
-
+                    console.log(response.data.user)
                     if (response.data.success) {
                         resolve("success");
                         localStorage.setItem("name", JSON.stringify(response.data.user));
@@ -59,7 +56,6 @@ const Login = () => {
                 <input type="submit" value={isSubmitting ? "submiting...." : "submit"} disabled={isSubmitting} />
                 {wrong && <p style={{ color: "red" }}>{wrong}</p>}
             </form>
-
             <p onClick={() => { navigate('/signin') }}>Create New Account</p>
             <p onClick={() => { navigate('/update') }}>forgot password?</p>
         </div>

@@ -27,8 +27,7 @@ const Navbar = () => {
     (async () => {
       try {
         const savedname = localStorage.getItem("name");
-        if (savedname !== "undefined") {
-
+        if (savedname || savedname !== "undefined") {
           setname(JSON.parse(savedname));
         }
       } catch (error) {
@@ -63,6 +62,7 @@ const Navbar = () => {
   const [menhover, setmenhover] = useState(false);
   return (
     <div className='navbar'>
+
       <NavLink to='/'> <img src="/myntra-2.svg" alt="" className='myntra-img' /></NavLink>
       <div className="nav-pages">
         <NavLink to='/' className={(e) => { return e.isActive ? "red" : "green" }} >Home</NavLink>
@@ -88,17 +88,21 @@ const Navbar = () => {
         <input type="text" placeholder='search for products' value={cloth} onKeyDown={(e) => { Fetch(e) }} onChange={(e) => { setcloth(e.target.value) }} />
       </div>
       <div className="profile" onClick={(e) => { e.preventDefault(); }} onMouseEnter={(e) => { e.stopPropagation(); Change() }} onMouseLeave={() => { ChangeStop() }}>
-        <NavLink onClick={()=>{e.preventDefault();}} ><img src="/profile.png" alt="" /></NavLink>
-        <NavLink  onClick={()=>{e.preventDefault();}}>Profile</NavLink>
+        <NavLink onClick={() => { e.preventDefault(); }} ><img src="/profile.png" alt="" /></NavLink>
+        <NavLink onClick={() => { e.preventDefault(); }}>Profile</NavLink>
         {dropstate && (
           <div className='dropdown'>
-            {name?<div className='user-details' onClick={() => { navigate('/profile'); setdropstate(false) }}>
-               <p >User Profile</p> 
-            </div>:<div className='user-details' onClick={() => { navigate('/login'); setdropstate(false) }}>
-               <p >signin/signup</p> 
+            {name ? <div className='user-details' onClick={() => { navigate('/profile'); setdropstate(false) }}>
+              <p >User Profile</p>
+            </div> : <div className='user-details' onClick={() => { navigate('/login'); setdropstate(false) }}>
+              <p >signin/signup</p>
             </div>}
             <div className='user-order'>
-              <p> Orders</p>
+              <p onClick={() => {
+                if (name) {
+                  navigate('/checkout', { state: { ContactInfo: name.PhoneNumber } })
+                }
+              }}> Orders</p>
               <p>Wishlist</p>
               <p>Gift Cards</p>
               <p>Contact Us</p>

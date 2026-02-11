@@ -4,25 +4,28 @@ import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 const Buy = () => {
-    const navigate=useNavigate();
+    const [COD, setCOD] = useState("");
+    const navigate = useNavigate();
     const { state } = useLocation();
     const { items } = state || {};
     const [userd, setuserd] = useState();
     const [per, setper] = useState();
-    const [user,setuser]=useState(false);
-    const[customer,setcustomer]=useState();
+    const [user, setuser] = useState(false);
+    const [customer, setcustomer] = useState();
     useEffect(() => {
-      const NAME=localStorage.getItem("name");
-      const localdata=JSON.parse(NAME);
-      if(localdata&&localdata!=="undefined"){
-        setuser(true)
-      }
-      else{
-        setuser(false);
-      }
+        const NAME = localStorage.getItem("name");
+        const localdata = JSON.parse(NAME);
+        setcustomer(localdata);
+        if (localdata && localdata !== "undefined") {
+            setuser(true)
+        }
+        else {
+            setuser(false);
+        }
     }, [])
-    
+
     useEffect(() => {
         if (items.price && items.price_strikethrough) {
             const discount = (items.price_strikethrough) - (items.price);
@@ -64,14 +67,44 @@ const Buy = () => {
             }, 1000);
         })
     }
-    const Buyproduct=()=>{
-        if(user===true){
-            navigate('/checkout');
+    const Buyproduct = async () => {
+        if (user === true && COD) {
+            try {
+                const mydata = {
+                    UserName: customer.Username,
+                    ContactInfo: customer.PhoneNumber,
+                    status: items.shipping_information,
+                    Productname: items.title,
+                    Price: items.price,
+                    ProductImage: items.url_image,
+                    DeliverAddress: userd.Address,
+                    PIN_NO: userd.pin,
+                    COD:COD
+                }
+                const response = await axios.post('/api/order', mydata);
+                console.log(response.data);
+                navigate('/checkout', { state: { ContactInfo: customer.PhoneNumber } })
+
+            } catch (error) {
+
+            }
         }
-        else{
-            navigate('/login')
+        else {
+            if (user === false) {
+                navigate('/login')
+            }
+            else {
+                alert("Select Mode of Delivery")
+            }
         }
     }
+
+
+    useEffect(() => {
+        console.log(COD);
+
+    }, [COD])
+
     return (
         <div className='buy' >
             <div className="image-section">
@@ -105,10 +138,9 @@ const Buy = () => {
                         <div className="payment-meythods">
                             <h4>Payment Method</h4>
                             <span>
-                                <input type="radio" name="payment" id="method-1" />
-                                <label htmlFor="method-1">Cash on Delivery</label></span>
-                            <span>   <input type="radio" name="payment" id="method-2" />
-                                <label htmlFor="method-2">Online Payment</label></span>
+                                <input type="radio" name="payment" id="method-1" value="Cash on Delivery" onChange={(e) => { setCOD(e.target.value) }} />
+                                <label htmlFor="method-1" >Cash on Delivery</label></span>
+
                         </div>
 
 
@@ -119,17 +151,17 @@ const Buy = () => {
                         <img src="/assurance (1).png" alt="Error" />
                         <p>Myntra assurance</p>
                     </span>
-                     <span>
+                    <span>
                         <img src="/discount.png" alt="" />
                         <p>Discount available</p>
-                     </span>
+                    </span>
                     <span>
-                         <img src="/return.png" alt="" />
-                         <p>Easy returns and exchanges</p>
+                        <img src="/return.png" alt="" />
+                        <p>Easy returns and exchanges</p>
                     </span>
                 </div>
                 <div className="buy-cart">
-                    <button onClick={() => {Buyproduct(); }}>Buy at ₹{items.price}</button>
+                    <button onClick={() => { Buyproduct(); }}>Buy at ₹{items.price}</button>
                     <button onClick={() => { }}>Add to Bag</button>
                 </div>
             </div>
